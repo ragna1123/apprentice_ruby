@@ -15,15 +15,15 @@ class VendingMachine
     end
     
     # ボタンが押されると貯まっていた金額が飲み物の値段以上なら飲み物を出す、その後飲み物の値段が引かれる
-    def press_button(drink_info)
+    def press_button(item_info)
         # コーヒーかの判断
-        if drink_info.is_cup && @cup_inventory > 0 && @cash >= drink_info.price
-            print drink_info.name
-            @cash -= drink_info.price
+        if item_info.is_cup && @cup_inventory > 0 && @cash >= item_info.price
+            puts item_info.name
+            @cash -= item_info.price
             @cup_inventory -= 1
-        elsif !drink_info.is_cup && @cash >= drink_info.price
-            print drink_info.name
-            @cash -= drink_info.price
+        elsif !item_info.is_cup && @cash >= item_info.price
+            puts item_info.name
+            @cash -= item_info.price
         end
         # コーヒならカップの判定処理
     end
@@ -67,15 +67,31 @@ class Drink < Item
     end   
 end
 
+class Snack < Item
+    def initialize
+        snack_list = {'potato chips' => 150 }
+        self.name = snack_list.keys[0]
+        self.price = snack_list.values[0]
+        self.is_cup = false
+    end
+end
+
 
 
 
 hot_cup_coffee = Cup_coffee.new('hot'); # => [coffee_name,price,cup]
 drink = Drink.new("cola") # => [drink_name,price]
+snack = Snack.new 
 vending_machine = VendingMachine.new('サントリー')
 vending_machine.deposit_coin(100)
 vending_machine.deposit_coin(100)
 puts vending_machine.press_button(drink)
-puts vending_machine.press_button(hot_cup_coffee) # カップが貯まっていないので空文字が出力されます
+
+puts vending_machine.press_button(hot_cup_coffee)
 vending_machine.add_cup(1)
-puts vending_machine.press_button(hot_cup_coffee) # hot cup coffee
+puts vending_machine.press_button(hot_cup_coffee)
+
+puts vending_machine.press_button(snack)
+vending_machine.deposit_coin(100)
+vending_machine.deposit_coin(100)
+puts vending_machine.press_button(snack)
