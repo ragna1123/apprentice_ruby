@@ -53,8 +53,6 @@ class VendingMachine
         end
     end
 
-
-
 end
 
 class Item
@@ -62,6 +60,7 @@ class Item
 end
 
 class Drink < Item
+    
     @@drink_list = {
         "cola" => {name: "cola", price: 150, style: "can"},
         "cider" => {name: "cider", price: 100, style: "can"}
@@ -73,7 +72,6 @@ class Drink < Item
             self.name = item_info[:name]
             self.price = item_info[:price]
             self.style = item_info[:style]
-
         else
             puts "存在しません"
         end            
@@ -86,7 +84,6 @@ class Cup_coffee < Item
         "hot" => {name: "hot", price: 100, style: "cup"},
         "ice" => {name: "ice", price: 100, style: "cup"}
     }
-
     def initialize(item_name)
         if @@coffee_list.key?(item_name)
             item_info = @@coffee_list[item_name]
@@ -119,8 +116,8 @@ end
 
 
 # インプット
-select_drink = Drink.new("cola")
-select_coffee = Cup_coffee.new("hot")
+select_drink = Drink.new("cider")
+select_coffee = Cup_coffee.new("ice")
 select_snack = Snack.new("snack")
 vending_machine = VendingMachine.new("santry")
 
