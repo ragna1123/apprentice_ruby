@@ -1,11 +1,15 @@
+# frozen_string_literal: true
+
+require 'debug'
+
 def hello
-    puts "Hello World"
+  puts 'Hello World'
 end
+hello
 
-hello()
-
+binding.b
 def greeting(name)
-    puts "おはよう、#{name}!"
+  puts "おはよう、#{name}!"
 end
 
 greeting('渡辺')
