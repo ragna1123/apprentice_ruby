@@ -73,7 +73,7 @@ begin
   result = calculate(num1, num2, operator)
   # 出力
   puts result
-# ０割エラーくん
+# 0割エラーくん
 rescue ZeroDivisionError
   puts 'ゼロによる割り算は許可されていません'
 end

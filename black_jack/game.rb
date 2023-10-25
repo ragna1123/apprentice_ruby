@@ -1,58 +1,29 @@
+# frozen_string_literal: true
+
 # ゲーム関連のクラス
 class Game
-
   # カード情報をもらう
-  def initialize()
-    # @deal_card_info = {} deal_cardから情報を受ける　
-    # @dealer_card = {}　いる？？
-    # @my_point = 0
-    # @dealer_point = 0
+  def initialize
     puts 'ブラックジャックを開始します。'
   end
 
-  # カード情報をもらってメッセージに反映
-  # 欲しい情報は自分とディーラーの引いのカード、自分とディーラーの得点、
-  # ゲームの進行
-
-  def player_pull() #cord_info
-    # if で初回(0点)の時にメッセージ変化
-    #  あなたの引いたカードは@my_card_suitの@my_card_numです。
-    #  あなたの引いたカードは@my_card_suitの@my_card_numです。
-    # else
-    #  あなたの現在の得点は15(point_calの返り値)です。カードを引きますか？（Y/N)
-    # あなたの得点は20です。
-
-  end
-
-  def dealer_pull() #cord_info
-    # if で初回(0点)の時にメッセージ変化
-    #  ディーラーの引いたカードはダイヤのQです。
-    #  ディーラーの引いた2枚目のカードはわかりません。
-    # else
-    # ディーラーの引いた2枚目のカードはダイヤの2でした。
-    # ディーラーの現在の得点は12です。
-    # ディーラーの引いたカードはハートのKです。
-    # ディーラーの得点は22です。
-
-  end
-
-  # poin計算
-  def point_cal() #ユーザーの持ち点、引いたカードの得点
-    # ユーザー情報からpointを取得
-    # ポイントに引いたカードの得点を加算
-    # 得点を返す
-  end
-
-  def burst
-    # 持ち点が21を超えたら起動
-    # 強制的に相手へ順番を渡す
-  end
-
   # 勝敗判定
-  def win_or_lose() #ユーザーとディーラーの得点
-    # 21より高いユーザーは敗者認定
-    # ユーザーの点数を比較
-    # putsあなたの勝ちです！
-    # ブラックジャックを終了します。
+  # ユーザーとディーラーの得点
+  def win_or_lose(own_score, dealer_score)
+    if own_score > dealer_score && own_score <= 21
+      puts 'あなたの勝ちです！'
+    elsif dealer_score > 21
+      puts 'あなたの勝ちです'
+    else
+      puts 'あなたの負けです'
+    end
+    game_exit
   end
+
+  # 終了処理
+  def game_exit
+    puts 'ブラックジャックを終了します。'
+    exit
+  end
+
 end
