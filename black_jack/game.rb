@@ -7,6 +7,7 @@ class Game
     puts 'ブラックジャックを開始します。'
   end
 
+
   # 勝敗判定
   # ユーザーとディーラーの得点
   def win_or_lose(own_score, dealer_score)

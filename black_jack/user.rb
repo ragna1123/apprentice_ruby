@@ -6,8 +6,15 @@ class User
     @own_point = 0
   end
 
-  def sum_score(card_point)
+  def sum_score(card_point) # 引いたカードを足していく
     @own_point += card_point
+  end
+
+  def burst?
+    return unless @own_point > 21
+
+    puts 'バーストしました'
+    true
   end
 end
 
@@ -31,13 +38,6 @@ class Player < User
     end
   end
 
-  def burst?
-    return unless @own_point > 21
-
-    puts 'バーストしました'
-    true
-  end
-
   def player_score
     puts "あなたの得点は#{@own_point}です。"
     @own_point
@@ -46,19 +46,21 @@ end
 
 # ディーラーに関するクラス
 class Dealer < User
-  def dealer_draw(card_info)
-    case @own_point
-    when 0
-      puts "ディーラーの引いたカードは#{card_info[:suit]}の#{card_info[:num]}です。" # 初回と３枚目
-      sum_score(card_info[:point])
-      puts 'ディーラーの引いた２枚目のカードは分かりません。'
-    when 1..16
-      puts "ディーラーの引いた２枚目のカードは#{card_info[:suit]}の#{card_info[:num]}でした。"
-      sum_score(card_info[:point])
-      puts "ディーラーの現在の得点は#{@own_point}です。"
-    else
-      puts "ディーラーの得点は#{@own_point}です。"
-    end
+  def dealer_first_draw(card_info)
+    puts "ディーラーの引いたカードは#{card_info[:suit]}の#{card_info[:num]}です。"
+    sum_score(card_info[:point])
+    puts 'ディーラーの引いた２枚目のカードは分かりません。'
+  end
+
+  def dealer_second_draw(card_info)
+    puts "ディーラーの引いた２枚目のカードは#{card_info[:suit]}の#{card_info[:num]}でした。"
+    sum_score(card_info[:point])
+    puts "ディーラーの現在の得点は#{@own_point}です。"
+  end
+
+  def dealer_thred_draw(card_info)
+    puts "ディーラーの引いたカードは#{card_info[:suit]}の#{card_info[:num]}です。"
+    sum_score(card_info[:point])
   end
 
   def dealer_next_hand?

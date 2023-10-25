@@ -19,7 +19,7 @@ end
 
 # ディーラーがカードを引く
 card_info = card.card_draw
-dealer.dealer_draw(card_info)
+dealer.dealer_first_draw(card_info)
 
 # プレイヤーのターン
 next_hand = player.player_next_hand? # 追加するかの入力
@@ -34,11 +34,13 @@ while next_hand == true # 入力にNが来るまで回り続ける
 end
 
 # ディーラーのターン
+card_info = card.card_draw
+dealer.dealer_second_draw(card_info)
 next_hand = dealer.dealer_next_hand? # デーラー判定式 以上でtrueを返す
 
 while next_hand == true
   card_info = card.card_draw
-  dealer.dealer_draw(card_info)
+  dealer.dealer_thred_draw(card_info)
   next_hand = dealer.dealer_next_hand?
 end
 
